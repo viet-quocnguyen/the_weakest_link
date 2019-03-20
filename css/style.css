@@ -1,0 +1,35 @@
+html{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#display{
+    /* element setup */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+
+
+    /* background setup */
+    background-image: url("../img/background.jpg");
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 100vh; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.button{
+    border: 3px solid white;
+    margin-bottom: 10px;
+    padding: 30px;
+    width: 30%;
+    text-align: center;
+
+    text-decoration: none;
+    font-size: 30px;
+    color: white;
+
+
+}
