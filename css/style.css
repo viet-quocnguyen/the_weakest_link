@@ -1,5 +1,11 @@
 html{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* background setup */
+    background-image: url("../img/background2.jpg");
+    background-color: black; /* Used if the image is unavailable */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
 #display{
     /* element setup */
@@ -8,16 +14,8 @@ html{
     justify-content: center;
     align-items: center;
     text-align: center;
-    
-
-
-    /* background setup */
-    background-image: url("../img/background.jpg");
-    background-color: #cccccc; /* Used if the image is unavailable */
     height: 100vh; /* You must set a specified height */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+
 }
 
 .button{
@@ -30,6 +28,36 @@ html{
     text-decoration: none;
     font-size: 30px;
     color: white;
+}
 
+/*Rules page*/
+/*Center heading*/
+#page_header{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
 
+/*Create box to contain rules*/
+#rules-box{
+    border: 5px solid gainsboro;
+    border-radius: 25px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+/*Rules text settings*/
+#rules{
+    color: white;
+    border-radius: 25px;
+    background: rgba(0,0,255,0.3);
+    text-align: left;
+    font-size: 25px;
+    padding: 5%;
+}
+
+/*Page link in top-left corner*/
+.page-link{
+    text-decoration: none;
+    color: white;
 }
