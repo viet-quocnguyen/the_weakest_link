@@ -1,72 +1,96 @@
-.container{
-    width: 90%;
-    margin: 0px auto;
-    padding-top: 30px;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+/* CONTAINER */
+.container {
+  width: 90%;
+  margin: 0px auto;
+  padding-top: 30px;
 
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
-#tree{
-    background-color: red;
-    height: 80vh;
-    width: 20%;
-}
-
-.money-tree{
-    background-color: green;
-    height: 70vh;
-    width: 100%;
-}
-.bank{
-    background-color: blue;
-    height: 10vh;
-    width: 100%;
+/* TREE */
+#tree {
+  height: 80vh;
+  width: 20%;
 }
 
-#display{
-    background-color: pink;
-    width: 70%;
-    height: 80vh;
+.money-tree {
+  background-color: green;
+  height: 70vh;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-#question{
-    background-color: orange;
-    width: 100%;
-    height: 80vh;
-    text-align: center;
-
-    margin-top: 10vh;
-
-}
-#choices{
-    display: flex;
-    flex-direction: column;
+.branch {
+  background-color: pink;
+  width: 50px;
+  height: 50px;
 }
 
-#timer{
-    background-color: burlywood;
-    height: 10vh;
-    width: 30%;
-    
-}
-.choice{
-    width: 50%;
-    text-align: left;
+#bank {
+  background-color: blue;
+  height: 10vh;
+  width: 100%;
 }
 
-ul{
-    text-decoration: none;
-    list-style: none;
+/* MAIN DISPLAY */
+#display {
+  background-color: pink;
+  width: 70%;
+  height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-li{
-    text-decoration: none;
+
+#question {
+  background-color: orange;
+  width: 100%;
+  height: 80vh;
+  text-align: center;
+
+  margin-top: 10vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#title {
+  width: 100%;
+}
+
+#choices {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.choice {
+  width: 100%;
+  text-align: left;
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.choice:hover {
+  background-color: blue;
+  color: white;
+}
+
+#timer {
+  background-color: burlywood;
+  height: 10vh;
+  width: 30%;
 }
