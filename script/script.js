@@ -278,20 +278,30 @@ const questions = [
   }
 ];
 
-let questionTime = 20;
-
+// Question variables
 const title = document.querySelector("#title");
 const choiceA = document.querySelector("#A");
 const choiceB = document.querySelector("#B");
 const choiceC = document.querySelector("#C");
 const choiceD = document.querySelector("#D");
 const counter = document.querySelector("#counter");
-const timer = setInterval(countDown, 1000);
+const round = document.querySelector("#round-number");
+const timeRoundOne = 10;
+const timeRoundTwo = 20;
+const timeRoundThree = 30;
+let time = timeRoundOne;
 let questionIndex = 0;
+let currentRound = 1;
+const timer = setTimeout(countDown, 1000);
 let score = 0;
+let totalMoney = 0;
 
-function renderQuestion(index) {
-  let question = questions[index];
+window.addEventListener("load", () => {
+  setTree();
+});
+
+function renderQuestion() {
+  let question = questions[questionIndex];
   title.innerHTML = "<h3>" + question.title + "</h3>";
   choiceA.innerHTML = "A. " + question["A"];
   choiceB.innerHTML = "B. " + question["B"];
@@ -304,25 +314,53 @@ function checkAnswer(answer) {
     answerIsCorrect();
     questionIndex++;
     if (questionIndex < questions.length) {
-      renderQuestion(questionIndex);
+      playGame();
     }
   } else {
     answerIsWrong();
     questionIndex++;
     if (questionIndex < questions.length) {
-      renderQuestion(questionIndex);
+      playGame();
     }
   }
 }
 
-function setTree(score) {
-  let branch = document.getElementById(`${score}`);
+function answerIsCorrect() {
+  if (isSetBank()) {
+    unsetTree();
+    score++;
+    setBank(score);
+    score = 0;
+    setTree();
+  } else {
+    unsetTree();
+    score++;
+    setTree();
+  }
+}
+
+function answerIsWrong() {
+  unsetTree();
+  score = 0;
+  setTree();
+  setBank(score);
+}
+
+function setTree() {
+  let branch = document.getElementById(`${score + 1}`);
   branch.style.backgroundColor = "yellow";
 }
 function unsetTree() {
-  if (score > 0) {
-    let branch = document.getElementById(`${score}`);
-    branch.style.backgroundColor = "";
+  let branch = document.getElementById(`${score + 1}`);
+  branch.style.backgroundColor = "";
+}
+
+function isSetBank() {
+  let option = prompt("Do you wanna set the money to bank");
+  if (option == "Y" || option == "y") {
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -343,35 +381,52 @@ function setBank(score) {
       break;
     case 4:
       money = 400;
+      break;
+    case 5:
+      money = 500;
+      break;
+    case 6:
+      money = 600;
+      break;
+    case 7:
+      money = 700;
+      break;
+    case 8:
+      money = 800;
+      break;
+    case 9:
+      money = 900;
+      break;
   }
+  totalMoney += money;
   let bank = document.querySelector("#money");
-  bank.innerHTML = `<h1> ${money} </h1>`;
+  bank.innerHTML = `<h1> ${totalMoney} </h1>`;
 }
 
 function countDown() {
-  questionTime--;
-  counter.innerHTML = questionTime;
-  if (questionTime == 0) {
-    clearInterval(timer);
-    alert("GAME OVER!");
+  time--;
+  counter.innerHTML = `<h3>${time}</h3>`;
+  round.innerHTML = `<h3>${currentRound}</h3>`;
+
+  if (time == 0) {
+    clearTimeout(timer);
+    currentRound++;
+    if (currentRound == 2) {
+      time = timeRoundTwo;
+      setTimeout(countDown, 1000);
+    } else if (currentRound == 3) {
+      time = timeRoundThree;
+      setTimeout(countDown, 1000);
+    } else {
+      alert("END GAME");
+    }
+  } else {
+    setTimeout(countDown, 1000);
   }
 }
 
-function answerIsCorrect() {
-  unsetTree();
-  score++;
-  setBank(score);
-  setTree(score);
-}
-
-function answerIsWrong() {
-  unsetTree();
-  score = 0;
-  setBank(score);
-}
-
 function playGame() {
-  renderQuestion(questionIndex);
+  renderQuestion();
 }
 
 playGame();

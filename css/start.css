@@ -1,6 +1,6 @@
 /* CONTAINER */
 .container {
-  width: 90%;
+  width: 100%;
   margin: 0px auto;
   padding-top: 30px;
 
@@ -14,14 +14,15 @@
 /* TREE */
 #tree {
   height: 80vh;
-  width: 20%;
+  width: 25%;
 }
 
 .money-tree {
-  background-color: green;
+  border: 1px solid black;
+  border-radius: 20px;
   height: 70vh;
   width: 100%;
-
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-evenly;
@@ -29,35 +30,38 @@
 }
 
 .branch {
-  background-color: pink;
-  width: 50px;
-  height: 50px;
+  border: 1px solid black;
+  border-radius: 50px;
+  width: 80%;
+  height: 30px;
+  /* VERTICAL ALIGN */
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
 }
 
 #bank {
-  background-color: blue;
-  height: 10vh;
+  border: 1px solid black;
+  border-radius: 20px;
   width: 100%;
 }
 
 /* MAIN DISPLAY */
 #display {
-  background-color: pink;
   width: 70%;
-  height: 80vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  word-wrap: break-word;
 }
 
 #question {
-  background-color: orange;
+  border: 1px solid black;
+  border-radius: 20px;
   width: 100%;
-  height: 80vh;
+  height: 70vh;
   text-align: center;
-
-  margin-top: 10vh;
 
   display: flex;
   flex-direction: column;
@@ -70,18 +74,18 @@
 }
 
 #choices {
-  width: 80%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
 }
 .choice {
-  width: 100%;
   text-align: left;
   border: 1px solid black;
+  border-radius: 20px;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   cursor: pointer;
 }
 .choice:hover {
@@ -89,8 +93,24 @@
   color: white;
 }
 
+/* INFORMATION */
+#information {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
 #timer {
-  background-color: burlywood;
-  height: 10vh;
-  width: 30%;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+}
+#round {
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 100px;
+  height: 100px;
 }
