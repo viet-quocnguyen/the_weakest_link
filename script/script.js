@@ -286,6 +286,9 @@ const choiceC = document.querySelector("#C");
 const choiceD = document.querySelector("#D");
 const counter = document.querySelector("#counter");
 const round = document.querySelector("#round-number");
+// create event listener on bank element
+const bankBut = document.querySelector("#bank");
+let playerName;
 const timeRoundOne = 10;
 const timeRoundTwo = 20;
 const timeRoundThree = 30;
@@ -299,6 +302,41 @@ let totalMoney = 0;
 window.addEventListener("load", () => {
   setTree();
 });
+
+bankBut.addEventListener("click", function(){
+  unsetTree();
+  score++;
+  setBank(score);
+  score = 0;
+  setTree();
+});
+
+/*adam's functions that didnt work */
+// function getName(){
+//   if(localStorage.length == 0){
+//     playerName = prompt(`Enter your name: `);
+//   }
+// }
+
+// function saveData(){
+//   localStorage.setItem('Name', playerName);
+//   localStorage.setItem('Round', currentRound);
+//   localStorage.setItem('Time', time);
+//   localStorage.setItem('QuestionIndex', questionIndex);
+// }
+
+// function loadData(){
+//   playerName = localStorage.getItem('Name');
+//   currentRound = localStorage.getItem('Round');
+//   time = localStorage.getItem('Time');
+//   questionIndex = localStorage.getItem('QuestionIndex');
+// }
+
+// function newGameData(){
+//   time = timeRoundOne;
+//   questionIndex = 0;
+//   currentRound = 1;
+// }
 
 function renderQuestion() {
   let question = questions[questionIndex];
@@ -325,19 +363,12 @@ function checkAnswer(answer) {
   }
 }
 
-function answerIsCorrect() {
-  if (isSetBank()) {
-    unsetTree();
-    score++;
-    setBank(score);
-    score = 0;
-    setTree();
-  } else {
+function answerIsCorrect(){
     unsetTree();
     score++;
     setTree();
-  }
 }
+
 
 function answerIsWrong() {
   unsetTree();
@@ -348,21 +379,15 @@ function answerIsWrong() {
 
 function setTree() {
   let branch = document.getElementById(`${score + 1}`);
-  branch.style.backgroundColor = "yellow";
+  branch.style.backgroundColor = "red";
+  branch.style.color = "white";
 }
 function unsetTree() {
   let branch = document.getElementById(`${score + 1}`);
   branch.style.backgroundColor = "";
+  branch.style.color = "";
 }
 
-function isSetBank() {
-  let option = prompt("Do you wanna set the money to bank");
-  if (option == "Y" || option == "y") {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 function setBank(score) {
   let money = 0;
@@ -419,6 +444,8 @@ function countDown() {
       setTimeout(countDown, 1000);
     } else {
       alert("END GAME");
+      //window.location.href = "../html/summary.html"; //Redirect player to summary page
+      //window.localStorage.clear(); // upon ending the game the local storage is cleared
     }
   } else {
     setTimeout(countDown, 1000);
