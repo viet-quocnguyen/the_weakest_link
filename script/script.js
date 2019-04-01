@@ -295,12 +295,40 @@ const timeRoundThree = 30;
 let time = timeRoundOne;
 let questionIndex = 0;
 let currentRound = 1;
-const timer = setTimeout(countDown, 1000);
+// const timer = setTimeout(countDown, 1000);
 let score = 0;
 let totalMoney = 0;
+// Banking Option
+let bankingOption = document.querySelector("#banking-option");
+let buttonYes = document.querySelector("#banking-button-yes");
+let buttonNo = document.querySelector("#banking-button-no");
+// Question
+let question = document.querySelector("#question");
+
+// bankMoney
+function bankMoney(isBank){
+  if(isBank){
+
+    setBank(score);
+    score = 0;
+    unsetTree();
+    setTree();
+  }else{
+    unsetTree();
+    setTree();
+  }
+  // toggle the question
+  bankingOption.style.display = "none";
+  question.style.display = "";
+}
+
+
 
 window.addEventListener("load", () => {
   setTree();
+  
+    bankingOption.style.display = "none";
+  
 });
 
 bankBut.addEventListener("click", function(){
@@ -311,32 +339,6 @@ bankBut.addEventListener("click", function(){
   setTree();
 });
 
-/*adam's functions that didnt work */
-// function getName(){
-//   if(localStorage.length == 0){
-//     playerName = prompt(`Enter your name: `);
-//   }
-// }
-
-// function saveData(){
-//   localStorage.setItem('Name', playerName);
-//   localStorage.setItem('Round', currentRound);
-//   localStorage.setItem('Time', time);
-//   localStorage.setItem('QuestionIndex', questionIndex);
-// }
-
-// function loadData(){
-//   playerName = localStorage.getItem('Name');
-//   currentRound = localStorage.getItem('Round');
-//   time = localStorage.getItem('Time');
-//   questionIndex = localStorage.getItem('QuestionIndex');
-// }
-
-// function newGameData(){
-//   time = timeRoundOne;
-//   questionIndex = 0;
-//   currentRound = 1;
-// }
 
 function renderQuestion() {
   let question = questions[questionIndex];
@@ -364,9 +366,9 @@ function checkAnswer(answer) {
 }
 
 function answerIsCorrect(){
-    unsetTree();
     score++;
-    setTree();
+    question.style.display = "none";
+    bankingOption.style.display = "";
 }
 
 
