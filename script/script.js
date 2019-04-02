@@ -278,67 +278,47 @@ const questions = [
   }
 ];
 
-// Question variables
+// Question Display
+let question = document.querySelector("#question");
 const title = document.querySelector("#title");
 const choiceA = document.querySelector("#A");
 const choiceB = document.querySelector("#B");
 const choiceC = document.querySelector("#C");
 const choiceD = document.querySelector("#D");
+
+// Information Display
 const counter = document.querySelector("#counter");
 const round = document.querySelector("#round-number");
-// create event listener on bank element
-const bankBut = document.querySelector("#bank");
+
 let playerName;
 const timeRoundOne = 10;
 const timeRoundTwo = 20;
 const timeRoundThree = 30;
+const timer = setTimeout(countDown, 1000);
 let time = timeRoundOne;
 let questionIndex = 0;
 let currentRound = 1;
-// const timer = setTimeout(countDown, 1000);
 let score = 0;
 let totalMoney = 0;
+
 // Banking Option
 let bankingOption = document.querySelector("#banking-option");
 let buttonYes = document.querySelector("#banking-button-yes");
 let buttonNo = document.querySelector("#banking-button-no");
-// Question
-let question = document.querySelector("#question");
 
-// bankMoney
-function bankMoney(isBank){
-  if(isBank){
-
-    setBank(score);
-    score = 0;
-    unsetTree();
-    setTree();
-  }else{
-    unsetTree();
-    setTree();
-  }
-  // toggle the question
-  bankingOption.style.display = "none";
-  question.style.display = "";
-}
-
+// Money tree
+let moneyTreeOne = document.querySelector("#money-tree-one");
+let moneyTreeTwo = document.querySelector("#money-tree-two");
+let moneyTreeThree = document.querySelector("#money-tree-three");
 
 
 window.addEventListener("load", () => {
   setTree();
-  
-    bankingOption.style.display = "none";
+  bankingOption.style.display = "none";
+  moneyTreeTwo.style.display = "none";
+  moneyTreeThree.style.display = "none";
   
 });
-
-bankBut.addEventListener("click", function(){
-  unsetTree();
-  score++;
-  setBank(score);
-  score = 0;
-  setTree();
-});
-
 
 function renderQuestion() {
   let question = questions[questionIndex];
@@ -366,9 +346,28 @@ function checkAnswer(answer) {
 }
 
 function answerIsCorrect(){
-    score++;
     question.style.display = "none";
     bankingOption.style.display = "";
+}
+
+// bankMoney
+function bankMoney(isBank){
+
+  if(isBank){
+    unsetTree();
+    score++;
+    setBank();
+    score = 0;
+    setTree();
+    
+  }else{
+    unsetTree();
+    score++;
+    setTree();
+  }
+  // toggle the question
+  bankingOption.style.display = "none";
+  question.style.display = "";
 }
 
 
@@ -376,55 +375,122 @@ function answerIsWrong() {
   unsetTree();
   score = 0;
   setTree();
-  setBank(score);
+  setBank();
 }
 
 function setTree() {
-  let branch = document.getElementById(`${score + 1}`);
-  branch.style.backgroundColor = "red";
-  branch.style.color = "white";
-}
-function unsetTree() {
-  let branch = document.getElementById(`${score + 1}`);
-  branch.style.backgroundColor = "";
-  branch.style.color = "";
-}
-
-
-function setBank(score) {
-  let money = 0;
-  switch (score) {
-    case 0:
-      money = 0;
-      break;
-    case 1:
-      money = 100;
-      break;
-    case 2:
-      money = 200;
-      break;
-    case 3:
-      money = 300;
-      break;
-    case 4:
-      money = 400;
-      break;
-    case 5:
-      money = 500;
-      break;
-    case 6:
-      money = 600;
-      break;
-    case 7:
-      money = 700;
-      break;
-    case 8:
-      money = 800;
-      break;
-    case 9:
-      money = 900;
-      break;
+  if(currentRound == 1){
+    let branch = document.getElementById(`${score + 1}-one`); 
+    branch.style.backgroundColor = "red";
+    branch.style.color = "white";
+  }else if(currentRound == 2){
+    let branch = document.getElementById(`${score + 1}-two`);
+    branch.style.backgroundColor = "red";
+    branch.style.color = "white";
+  }else if(currentRound == 3){
+    let branch = document.getElementById(`${score + 1}-three`);
+    branch.style.backgroundColor = "red";
+    branch.style.color = "white";
   }
+  
+}
+
+function unsetTree() {
+  if(currentRound == 1){
+    let branch = document.getElementById(`${score + 1}-one`); 
+    branch.style.backgroundColor = "";
+    branch.style.color = "";
+  }else if(currentRound == 2){
+    let branch = document.getElementById(`${score + 1}-two`);
+    branch.style.backgroundColor = "";
+    branch.style.color = "";
+  }else if(currentRound == 3){
+    let branch = document.getElementById(`${score + 1}-three`);
+    branch.style.backgroundColor = "";
+    branch.style.color = "";
+  }
+  
+}
+
+
+function setBank() {
+  let money = 0;
+  if(currentRound == 1){
+
+    switch (score) {
+      case 0:
+        money = 0;
+        break;
+      case 1:
+        money = 100;
+        break;
+      case 2:
+        money = 200;
+        break;
+      case 3:
+        money = 300;
+        break;
+      case 4:
+        money = 400;
+        break;
+      case 5:
+        money = 500;
+        break;
+      case 6:
+        money = 600;
+        break;
+      case 7:
+        money = 700;
+        break;
+      case 8:
+        money = 800;
+        break;
+      case 9:
+        money = 900;
+        break;
+    }
+
+  }else if(currentRound == 2){
+
+      switch (score) {
+        case 0:
+          money = 0;
+          break;
+        case 1:
+          money = 300;
+          break;
+        case 2:
+          money = 600;
+          break;
+        case 3:
+          money = 900;
+          break;
+        case 4:
+          money = 1200;
+          break;
+        case 5:
+          money = 1500;
+          break;
+      }
+
+    }else if(currentRound == 3){
+      switch (score) {
+        case 0:
+          money = 0;
+          break;
+        case 1:
+          money = 1000;
+          break;
+        case 2:
+          money = 2000;
+          break;
+        case 3:
+          money = 3000;
+          break;
+        
+      }
+    }
+ 
   totalMoney += money;
   let bank = document.querySelector("#money");
   bank.innerHTML = `<h1> ${totalMoney} </h1>`;
@@ -440,9 +506,20 @@ function countDown() {
     currentRound++;
     if (currentRound == 2) {
       time = timeRoundTwo;
+      moneyTreeOne.style.display = "none";
+      moneyTreeTwo.style.display = "";
+      unsetTree()
+      score = 0;
+      setTree();
       setTimeout(countDown, 1000);
     } else if (currentRound == 3) {
       time = timeRoundThree;
+      moneyTreeOne.style.display = "none";
+      moneyTreeTwo.style.display = "none";
+      moneyTreeThree.style.display = "";
+      unsetTree()
+      score = 0;
+      setTree();
       setTimeout(countDown, 1000);
     } else {
       alert("END GAME");
