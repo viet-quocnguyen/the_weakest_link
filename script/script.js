@@ -425,28 +425,28 @@ function setBank() {
         money = 100;
         break;
       case 2:
-        money = 200;
+        money = 1000;
         break;
       case 3:
-        money = 300;
+        money = 5000;
         break;
       case 4:
-        money = 400;
+        money = 10000;
         break;
       case 5:
-        money = 500;
+        money = 50000;
         break;
       case 6:
-        money = 600;
+        money = 75000;
         break;
       case 7:
-        money = 700;
+        money = 125000;
         break;
       case 8:
-        money = 800;
+        money = 250000;
         break;
       case 9:
-        money = 900;
+        money = 500000;
         break;
     }
 
@@ -457,19 +457,19 @@ function setBank() {
           money = 0;
           break;
         case 1:
-          money = 300;
+          money = 1000;
           break;
         case 2:
-          money = 600;
+          money = 10000;
           break;
         case 3:
-          money = 900;
+          money = 75000;
           break;
         case 4:
-          money = 1200;
+          money = 125000;
           break;
         case 5:
-          money = 1500;
+          money = 500000;
           break;
       }
 
@@ -506,28 +506,39 @@ function countDown() {
     currentRound++;
     if (currentRound == 2) {
       time = timeRoundTwo;
+      setTimeout(countDown, 1000);
+      
       moneyTreeOne.style.display = "none";
       moneyTreeTwo.style.display = "";
+      bankingOption.style.display = "none";
+      question.style.display = "";
       unsetTree()
       score = 0;
       setTree();
-      setTimeout(countDown, 1000);
+
+      
+      
     } else if (currentRound == 3) {
       time = timeRoundThree;
+      setTimeout(countDown, 1000);
       moneyTreeOne.style.display = "none";
       moneyTreeTwo.style.display = "none";
       moneyTreeThree.style.display = "";
+      bankingOption.style.display = "none";
+      question.style.display = "";
+      
       unsetTree()
       score = 0;
       setTree();
-      setTimeout(countDown, 1000);
+
+     
     } else {
       alert("END GAME");
       //window.location.href = "../html/summary.html"; //Redirect player to summary page
       //window.localStorage.clear(); // upon ending the game the local storage is cleared
     }
   } else {
-    setTimeout(countDown, 1000);
+    timer = setTimeout(countDown, 1000);
   }
 }
 
