@@ -299,10 +299,10 @@ const timeRoundOne = 5;
 const timeRoundTwo = 10;
 const timeRoundThree = 20;
 
-const timer = setTimeout(countDown, 1000);
+// const timer = setTimeout(countDown, 1000);
 let time = timeRoundOne;
 let questionIndex = 0;
-let currentRound = 1;
+let currentRound = 3;
 let score = 0;
 let totalMoney = 0;
 
@@ -329,9 +329,9 @@ window.addEventListener("load", () => {
   bankingOption.style.display = "none";
 
   // Default tree
-  moneyTreeOne.style.display = "";
+  moneyTreeOne.style.display = "none";
   moneyTreeTwo.style.display = "none";
-  moneyTreeThree.style.display = "none";
+  moneyTreeThree.style.display = "";
 });
 
 function renderQuestion() {
@@ -363,7 +363,7 @@ function answerIsCorrect() {
       isGameStop = true;
       score++;
       setBank();
-    }else{
+    } else {
       unsetTree();
       score++;
       setTree();
@@ -560,7 +560,7 @@ function displayResult() {
   gameplay.style.display = "none";
   result.style.display = "";
   let resultInfomation = document.querySelector("#result-information");
-  let playerName = document.querySelector("#player-name")
+  let playerName = document.querySelector("#player-name");
   let saveButton = document.querySelector("#save-result-button");
   let playAgainButton = document.querySelector("#play-again-button");
   // Add event to buttons
@@ -568,25 +568,54 @@ function displayResult() {
   saveButton.addEventListener("click", saveResult);
   if (isWin) {
     resultInfomation.innerHTML = `Congratulation! You win the game and go home with \$${totalMoney}`;
-    
   } else {
-    resultInfomation.innerHTML = "You lose the game :( <br> Better luck next time!";
+    resultInfomation.innerHTML =
+      "You lose the game :( <br> Better luck next time!";
     playerName.style.display = "none";
     saveButton.style.display = "none";
   }
 }
 
-function restartGame(){
+function restartGame() {
   location.reload();
+}
+
+function saveResult() {
+  let playerName = document.querySelector("#player-name").value;
+  let players = JSON.parse(localStorage.getItem("players"));
+  let playerObj = {
+    name: playerName,
+    money: totalMoney
+  };
+  if (players) {
+    players.push(playerObj);
+    localStorage.setItem("players", JSON.stringify(players));
+  } else {
+    players = [];
+    players.push(playerObj);
+    localStorage.setItem("players", JSON.stringify(players));
+  }
+  displayRanking();
+}
+
+function displayRanking() {
+  let rankingList = document.querySelector("#result-ranking");
+  let players = JSON.parse(localStorage.getItem("players"));
+  if (players) {
+    rankingList.innerHTML = "";
+    for (let i = 0; i < players.length; i++) {
+      rankingList.innerHTML +=
+        "<br>" + players[i].name + " won " + players[i].money;
+    }
+  }
 }
 
 function playGame() {
   if (isGameStop) {
     displayResult();
-  }else{
+  } else {
     renderQuestion();
   }
-  
 }
 
 playGame();
