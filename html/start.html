@@ -23,10 +23,10 @@
           <div class="branch" id="9-one">$500,000</div>
         </div>
         <div class="money-tree" id="money-tree-two">
-          <div class="branch" id="2-two">$1000</div>
-          <div class="branch" id="3-two">$10,000</div>
-          <div class="branch" id="4-two">$75,000</div>
-          <div class="branch" id="5-two">$125,000</div>
+          <div class="branch" id="1-two">$1000</div>
+          <div class="branch" id="2-two">$10,000</div>
+          <div class="branch" id="3-two">$75,000</div>
+          <div class="branch" id="4-two">$125,000</div>
           <div class="branch" id="5-two">$500,000</div>
         </div>
         <div class="money-tree" id="money-tree-three">
@@ -43,7 +43,7 @@
       </div>
 
       <!-- DISPLAY -->
-      <div id="display">
+      <div class="display" id="gameplay">
         <!-- QUESTION -->
         <div id="question">
           <div id="title">
@@ -60,10 +60,21 @@
         <div id="banking-option">
           <h3>Do you want to bank your money?</h3>
           <div class="option">
-              <input type="button" id="banking-button-yes" class="button" onclick="bankMoney(true)" value="Yes"/>
-              <input type="button" id="banking-button-no" class="button" onclick="bankMoney(false)" value="No" />
+            <input
+              type="button"
+              id="banking-button-yes"
+              class="button"
+              onclick="bankMoney(true)"
+              value="Yes"
+            />
+            <input
+              type="button"
+              id="banking-button-no"
+              class="button"
+              onclick="bankMoney(false)"
+              value="No"
+            />
           </div>
-          
         </div>
 
         <!-- TIMER -->
@@ -78,7 +89,23 @@
           </div>
         </div>
       </div>
+
+      <div class="display" id="result">
+        <h1 id="result-information">You have win the game</h1>
+        <input type="text" id="player-name" placeholder="Enter your name" />
+        <div class="result-option">
+          <button id="save-result-button" onclick="store()" type="button">
+            Save result
+          </button>
+          <br />
+          <button id="play-again-button" onclick="restartGame()" type="button">
+            Play again
+          </button>
+        </div>
+        <div id="result-ranking"></div>
+      </div>
     </div>
+
     <script src="../script/script.js"></script>
   </body>
 </html>

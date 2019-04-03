@@ -1,4 +1,4 @@
-html{
+html {
   background-image: url("../img/background2.jpg");
   background-color: black; /* Used if the image is unavailable */
   background-position: center; /* Center the image */
@@ -39,12 +39,11 @@ html{
   align-items: center;
 
   background: rgba(0, 0, 139, 0.6);
-  
 }
 
 .branch {
   border: 1px solid yellow;
-  
+
   border-radius: 50px;
   width: 80%;
   height: 30px;
@@ -65,15 +64,15 @@ html{
 }
 
 /* ADD BANK HOVER FEATURE */
-#bank:hover{
+#bank:hover {
   border: 3px solid black;
   background-color: red;
   cursor: pointer;
-  color:white;
+  color: white;
 }
 
 /* MAIN DISPLAY */
-#display {
+.display {
   width: 70%;
 
   display: flex;
@@ -95,26 +94,22 @@ html{
   align-items: center;
 
   background: rgba(70, 130, 180, 0.4);
-
 }
 
-#banking-option{
-
-  width:100%;
+#banking-option {
+  width: 100%;
   height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
-.button{
+.button {
   padding: 10px;
   border: 1px solid black;
   width: 100px;
   margin-left: 10px;
   border-radius: 20px;
-
 }
 
 #title {
@@ -136,12 +131,25 @@ html{
   margin-top: 20px;
   cursor: pointer;
   background: rgba(0, 0, 139, 0.6);
-
 }
 .choice:hover {
   background-color: blue;
   color: white;
   font-weight: bold;
+}
+
+#result {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+}
+.result-option {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  justify-content: space-evenly;
 }
 
 /* INFORMATION */
@@ -154,22 +162,20 @@ html{
 }
 #timer {
   border: 1px solid yellow;
-  
+
   border-radius: 20px;
   width: 100px;
   height: 100px;
   margin-left: 10px;
 
   background: rgba(0, 0, 139, 0.6);
-  
 }
 #round {
-  border: 1px solid yellow;  
-  
+  border: 1px solid yellow;
+
   border-radius: 20px;
   width: 100px;
   height: 100px;
 
   background: rgba(0, 0, 139, 0.6);
-  
 }
