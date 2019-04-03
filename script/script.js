@@ -358,13 +358,16 @@ function checkAnswer(answer) {
 
 function answerIsCorrect() {
   if (currentRound == 3) {
-    unsetTree();
-    score++;
-    setTree();
-    setBank();
-    if (score == 3) {
+    if (score == 2) {
       isWin = true;
       isGameStop = true;
+      score++;
+      setBank();
+    }else{
+      unsetTree();
+      score++;
+      setTree();
+      setBank();
     }
   } else {
     question.style.display = "none";
@@ -509,7 +512,7 @@ function setBank() {
 
   totalMoney += money;
   let bank = document.querySelector("#money");
-  bank.innerHTML = `<h1> ${totalMoney} </h1>`;
+  bank.innerHTML = `<h3> ${totalMoney} </h3>`;
 }
 
 function countDown() {
@@ -557,18 +560,33 @@ function displayResult() {
   gameplay.style.display = "none";
   result.style.display = "";
   let resultInfomation = document.querySelector("#result-information");
+  let playerName = document.querySelector("#player-name")
+  let saveButton = document.querySelector("#save-result-button");
+  let playAgainButton = document.querySelector("#play-again-button");
+  // Add event to buttons
+  playAgainButton.addEventListener("click", restartGame);
+  saveButton.addEventListener("click", saveResult);
   if (isWin) {
-    resultInfomation.innerHTML = "You win the game!";
+    resultInfomation.innerHTML = `Congratulation! You win the game and go home with \$${totalMoney}`;
+    
   } else {
-    resultInfomation.innerHTML = "You lose the game :(";
+    resultInfomation.innerHTML = "You lose the game :( <br> Better luck next time!";
+    playerName.style.display = "none";
+    saveButton.style.display = "none";
   }
+}
+
+function restartGame(){
+  location.reload();
 }
 
 function playGame() {
   if (isGameStop) {
     displayResult();
+  }else{
+    renderQuestion();
   }
-  renderQuestion();
+  
 }
 
 playGame();

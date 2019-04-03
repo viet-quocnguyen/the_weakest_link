@@ -110,8 +110,14 @@ html {
   width: 100px;
   margin-left: 10px;
   border-radius: 20px;
+  background: rgba(0, 0, 139, 0.6);
+  color: white;
+  
 }
-
+.button:hover{
+  background-color: blue;
+  color: white;
+}
 #title {
   width: 100%;
 }
