@@ -297,7 +297,7 @@ const round = document.querySelector("#round-number");
 let playerName;
 const timeRoundOne = 5;
 const timeRoundTwo = 10;
-const timeRoundThree = 15;
+const timeRoundThree = 20;
 
 const timer = setTimeout(countDown, 1000);
 let time = timeRoundOne;
@@ -315,6 +315,9 @@ let buttonNo = document.querySelector("#banking-button-no");
 let moneyTreeOne = document.querySelector("#money-tree-one");
 let moneyTreeTwo = document.querySelector("#money-tree-two");
 let moneyTreeThree = document.querySelector("#money-tree-three");
+
+let isWin = false;
+let isGameStop = false;
 
 window.addEventListener("load", () => {
   setTree();
@@ -354,8 +357,31 @@ function checkAnswer(answer) {
 }
 
 function answerIsCorrect() {
-  question.style.display = "none";
-  bankingOption.style.display = "";
+  if (currentRound == 3) {
+    unsetTree();
+    score++;
+    setTree();
+    setBank();
+    if (score == 3) {
+      isWin = true;
+      isGameStop = true;
+    }
+  } else {
+    question.style.display = "none";
+    bankingOption.style.display = "";
+  }
+}
+
+function answerIsWrong() {
+  if (currentRound == 3) {
+    isWin = false;
+    isGameStop = true;
+    totalMoney = 0;
+  }
+  unsetTree();
+  score = 0;
+  setTree();
+  setBank();
 }
 
 // bankMoney
@@ -374,13 +400,6 @@ function bankMoney(isBank) {
   // toggle the question
   bankingOption.style.display = "none";
   question.style.display = "";
-}
-
-function answerIsWrong() {
-  unsetTree();
-  score = 0;
-  setTree();
-  setBank();
 }
 
 function setTree() {
@@ -526,6 +545,7 @@ function countDown() {
       score = 0;
       setTree();
     } else {
+      isGameStop = true;
       displayResult();
     }
   } else {
@@ -536,9 +556,18 @@ function countDown() {
 function displayResult() {
   gameplay.style.display = "none";
   result.style.display = "";
+  let resultInfomation = document.querySelector("#result-information");
+  if (isWin) {
+    resultInfomation.innerHTML = "You win the game!";
+  } else {
+    resultInfomation.innerHTML = "You lose the game :(";
+  }
 }
 
 function playGame() {
+  if (isGameStop) {
+    displayResult();
+  }
   renderQuestion();
 }
 
