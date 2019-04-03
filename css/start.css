@@ -108,13 +108,12 @@ html {
   padding: 10px;
   border: 1px solid black;
   width: 100px;
-  margin-left: 10px;
+  margin-left: 10 px;
   border-radius: 20px;
   background: rgba(0, 0, 139, 0.6);
   color: white;
-  
 }
-.button:hover{
+.button:hover {
   background-color: blue;
   color: white;
 }
@@ -146,12 +145,12 @@ html {
 
 #result {
   display: flex;
-
+  text-align: center;
   flex-direction: column;
   justify-content: center;
 }
 .result-option {
-  width: 30%;
+  width: 100px;
   display: flex;
   flex-direction: row;
   margin-top: 20px;
