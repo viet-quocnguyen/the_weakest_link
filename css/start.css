@@ -1,6 +1,6 @@
 html {
   background-image: url("../img/background2.jpg");
-  background-color: black; /* Used if the image is unavailable */
+  height: 100vh;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
@@ -183,4 +183,10 @@ html {
   height: 100px;
 
   background: rgba(0, 0, 139, 0.6);
+}
+
+@media only screen and (max-width: 600px) {
+  .button {
+    font-size: 20px;
+  }
 }
