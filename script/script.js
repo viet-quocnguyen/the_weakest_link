@@ -283,7 +283,7 @@ const gameplay = document.querySelector("#gameplay");
 const result = document.querySelector("#result");
 
 // Question Display
-let question = document.querySelector("#question");
+const question = document.querySelector("#question");
 const title = document.querySelector("#title");
 const choiceA = document.querySelector("#A");
 const choiceB = document.querySelector("#B");
@@ -294,44 +294,68 @@ const choiceD = document.querySelector("#D");
 const counter = document.querySelector("#counter");
 const round = document.querySelector("#round-number");
 
-let playerName;
-const timeRoundOne = 5;
-const timeRoundTwo = 10;
-const timeRoundThree = 20;
+// Banking Option
+const bankingOption = document.querySelector("#banking-option");
+const buttonYes = document.querySelector("#banking-button-yes");
+const buttonNo = document.querySelector("#banking-button-no");
 
-const timer = setTimeout(countDown, 1000);
-let time = timeRoundOne;
+// Money tree
+const moneyTreeOne = document.querySelector("#money-tree-one");
+const moneyTreeTwo = document.querySelector("#money-tree-two");
+const moneyTreeThree = document.querySelector("#money-tree-three");
+
+let isWin = false;
+let isGameStop = false;
 let questionIndex = 0;
 let currentRound = 1;
 let score = 0;
 let totalMoney = 0;
-
-// Banking Option
-let bankingOption = document.querySelector("#banking-option");
-let buttonYes = document.querySelector("#banking-button-yes");
-let buttonNo = document.querySelector("#banking-button-no");
-
-// Money tree
-let moneyTreeOne = document.querySelector("#money-tree-one");
-let moneyTreeTwo = document.querySelector("#money-tree-two");
-let moneyTreeThree = document.querySelector("#money-tree-three");
-
-let isWin = false;
-let isGameStop = false;
+let time;
+const timer = setTimeout(countDown, 1000);
+const timeRoundOne = 5;
+const timeRoundTwo = 10;
+const timeRoundThree = 20;
 
 window.addEventListener("load", () => {
-  setTree();
   // Default display
   result.style.display = "none";
   gameplay.style.display = "";
 
   // Default banking
   bankingOption.style.display = "none";
-
-  // Default tree
-  moneyTreeOne.style.display = "";
-  moneyTreeTwo.style.display = "none";
-  moneyTreeThree.style.display = "none";
+  let isLoadGame = false;
+  if (isLoadGame) {
+    let gameObj = JSON.parse(localStorage.getItem("game-information"));
+    if (gameObj) {
+      time = gameObj.time;
+      currentRound = gameObj.round;
+      totalMoney = gameObj.money;
+      score = gameObj.score;
+      let bank = document.querySelector("#money");
+      bank.innerHTML = `<h3> ${totalMoney} </h3>`;
+      if (currentRound == 1) {
+        moneyTreeOne.style.display = "";
+        moneyTreeTwo.style.display = "none";
+        moneyTreeThree.style.display = "none";
+      } else if (currentRound == 2) {
+        moneyTreeOne.style.display = "one";
+        moneyTreeTwo.style.display = "";
+        moneyTreeThree.style.display = "none";
+      } else if (currentRound == 3) {
+        moneyTreeOne.style.display = "none";
+        moneyTreeTwo.style.display = "none";
+        moneyTreeThree.style.display = "";
+      }
+      setTree();
+    }
+  } else {
+    time = timeRoundOne;
+    setTree();
+    // Default tree
+    moneyTreeOne.style.display = "";
+    moneyTreeTwo.style.display = "none";
+    moneyTreeThree.style.display = "none";
+  }
 });
 
 function renderQuestion() {
@@ -387,7 +411,6 @@ function answerIsWrong() {
   setBank();
 }
 
-// bankMoney
 function bankMoney(isBank) {
   if (isBank) {
     unsetTree();
@@ -493,21 +516,6 @@ function setBank() {
         money = 500000;
         break;
     }
-    // } else if (currentRound == 3) {
-    //   switch (score) {
-    //     case 0:
-    //       money = 0;
-    //       break;
-    //     case 1:
-    //       money = 1000;
-    //       break;
-    //     case 2:
-    //       money = 2000;
-    //       break;
-    //     case 3:
-    //       money = 3000;
-    //       break;
-    //   }
   }
 
   totalMoney += money;
@@ -616,7 +624,19 @@ function displayRanking() {
     }
   }
 }
+function backMenu() {
+  document.location.href = "/index.html";
+}
 
+function saveCurrentGame() {
+  let gameObj = {
+    round: currentRound,
+    time: time,
+    money: totalMoney,
+    score: score
+  };
+  localStorage.setItem("game-information", JSON.stringify(gameObj));
+}
 function playGame() {
   if (isGameStop) {
     displayResult();

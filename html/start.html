@@ -66,6 +66,7 @@
               class="button"
               onclick="bankMoney(true)"
               value="Yes"
+              style="margin-bottom: 10px"
             />
             <input
               type="button"
@@ -79,13 +80,24 @@
 
         <!-- TIMER -->
         <div id="information">
-          <div id="round" class="information">
-            <h3>ROUND</h3>
-            <div id="round-number"><h3>1</h3></div>
+          <div id="game-option">
+            <button class="button" id="save-game" onclick="saveCurrentGame()">
+              Save game
+            </button>
+            <button class="button" id="back-menu" onclick="backMenu()">
+              Back Menu
+            </button>
           </div>
-          <div id="timer" class="information">
-            <h3>TIMER</h3>
-            <div id="counter"><h3>0</h3></div>
+
+          <div id="game-information">
+            <div id="round" class="information">
+              <h5>ROUND</h5>
+              <div id="round-number"><h3></h3></div>
+            </div>
+            <div id="timer" class="information" style="margin-left: 10px">
+              <h5>TIMER</h5>
+              <div id="counter"><h3></h3></div>
+            </div>
           </div>
         </div>
       </div>
