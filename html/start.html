@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <!-- DISPLAY -->
+      <!-- DISPLAY GAME -->
       <div class="display" id="gameplay">
         <!-- QUESTION -->
         <div id="question">
@@ -57,6 +57,7 @@
           </div>
         </div>
 
+        <!-- BANKING OPTION -->
         <div id="banking-option">
           <h3>Do you want to bank your money?</h3>
           <div class="option">
@@ -102,6 +103,7 @@
         </div>
       </div>
 
+      <!-- DISPLAY RESULT -->
       <div class="display" id="result">
         <h1 id="result-information">You have win the game</h1>
         <input type="text" id="player-name" placeholder="Enter your name" />
@@ -115,6 +117,24 @@
           </button>
         </div>
         <div id="result-ranking"></div>
+      </div>
+
+      <!-- DISPLAY LOADGAME -->
+      <div class="display" id="load-game">
+        <h3>Do you wanna load game?</h3>
+        <input
+          type="button"
+          class="button"
+          value="Yes"
+          onclick="isLoadGame(true)"
+        />
+        <br />
+        <input
+          type="button"
+          class="button"
+          value="No"
+          onclick="isLoadGame(false)"
+        />
       </div>
     </div>
 

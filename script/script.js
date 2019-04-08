@@ -281,7 +281,7 @@ const questions = [
 // Main display
 const gameplay = document.querySelector("#gameplay");
 const result = document.querySelector("#result");
-
+const loadGameDisplay = document.querySelector("#load-game");
 // Question Display
 const question = document.querySelector("#question");
 const title = document.querySelector("#title");
@@ -315,39 +315,22 @@ const timer = setTimeout(countDown, 1000);
 const timeRoundOne = 5;
 const timeRoundTwo = 10;
 const timeRoundThree = 20;
-
 window.addEventListener("load", () => {
   // Default display
-  result.style.display = "none";
-  gameplay.style.display = "";
 
+  result.style.display = "none";
+  gameplay.style.display = "none";
+  moneyTreeOne.style.display = "";
+  moneyTreeTwo.style.display = "none";
+  moneyTreeThree.style.display = "none";
   // Default banking
   bankingOption.style.display = "none";
-  let isLoadGame = false;
-  if (isLoadGame) {
-    let gameObj = JSON.parse(localStorage.getItem("game-information"));
-    if (gameObj) {
-      time = gameObj.time;
-      currentRound = gameObj.round;
-      totalMoney = gameObj.money;
-      score = gameObj.score;
-      let bank = document.querySelector("#money");
-      bank.innerHTML = `<h3> ${totalMoney} </h3>`;
-      if (currentRound == 1) {
-        moneyTreeOne.style.display = "";
-        moneyTreeTwo.style.display = "none";
-        moneyTreeThree.style.display = "none";
-      } else if (currentRound == 2) {
-        moneyTreeOne.style.display = "one";
-        moneyTreeTwo.style.display = "";
-        moneyTreeThree.style.display = "none";
-      } else if (currentRound == 3) {
-        moneyTreeOne.style.display = "none";
-        moneyTreeTwo.style.display = "none";
-        moneyTreeThree.style.display = "";
-      }
-      setTree();
-    }
+  loadGameDisplay.style.display = "";
+});
+
+function isLoadGame(isLoad) {
+  if (isLoad) {
+    loadGame();
   } else {
     time = timeRoundOne;
     setTree();
@@ -356,7 +339,9 @@ window.addEventListener("load", () => {
     moneyTreeTwo.style.display = "none";
     moneyTreeThree.style.display = "none";
   }
-});
+  loadGameDisplay.style.display = "none";
+  gameplay.style.display = "";
+}
 
 function renderQuestion() {
   let question = questions[questionIndex];
@@ -629,13 +614,44 @@ function backMenu() {
 }
 
 function saveCurrentGame() {
-  let gameObj = {
-    round: currentRound,
-    time: time,
-    money: totalMoney,
-    score: score
-  };
-  localStorage.setItem("game-information", JSON.stringify(gameObj));
+  if (confirm("Do you wannna save current game?")) {
+    let gameObj = {
+      round: currentRound,
+      time: time,
+      money: totalMoney,
+      score: score
+    };
+    localStorage.setItem("game-information", JSON.stringify(gameObj));
+    alert("The current game is saved!");
+  } else {
+    return;
+  }
+}
+
+function loadGame() {
+  let gameObj = JSON.parse(localStorage.getItem("game-information"));
+  if (gameObj) {
+    time = gameObj.time;
+    currentRound = gameObj.round;
+    totalMoney = gameObj.money;
+    score = gameObj.score;
+    let bank = document.querySelector("#money");
+    bank.innerHTML = `<h3> ${totalMoney} </h3>`;
+    if (currentRound == 1) {
+      moneyTreeOne.style.display = "";
+      moneyTreeTwo.style.display = "none";
+      moneyTreeThree.style.display = "none";
+    } else if (currentRound == 2) {
+      moneyTreeOne.style.display = "one";
+      moneyTreeTwo.style.display = "";
+      moneyTreeThree.style.display = "none";
+    } else if (currentRound == 3) {
+      moneyTreeOne.style.display = "none";
+      moneyTreeTwo.style.display = "none";
+      moneyTreeThree.style.display = "";
+    }
+    setTree();
+  }
 }
 function playGame() {
   if (isGameStop) {
