@@ -1,4 +1,4 @@
-const questions = [
+let questions = [
   {
     title: "Who is the president of USA",
     A: "Donald Trump",
@@ -311,10 +311,21 @@ let currentRound = 1;
 let score = 0;
 let totalMoney = 0;
 let time;
-const timer = setTimeout(countDown, 1000);
+// const timer = setTimeout(countDown, 1000);
 const timeRoundOne = 5;
 const timeRoundTwo = 10;
 const timeRoundThree = 20;
+
+function shuffleArray(array) {
+  for (var i = array.length - 1; i >= 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
 window.addEventListener("load", () => {
   // Default display
 
@@ -332,6 +343,8 @@ function isLoadGame(isLoad) {
   if (isLoad) {
     loadGame();
   } else {
+    questions = shuffleArray(questions);
+    console.log(questions);
     time = timeRoundOne;
     setTree();
     // Default tree
@@ -341,6 +354,7 @@ function isLoadGame(isLoad) {
   }
   loadGameDisplay.style.display = "none";
   gameplay.style.display = "";
+  playGame();
 }
 
 function renderQuestion() {
@@ -619,7 +633,9 @@ function saveCurrentGame() {
       round: currentRound,
       time: time,
       money: totalMoney,
-      score: score
+      score: score,
+      questions: questions,
+      questionIndex: questionIndex
     };
     localStorage.setItem("game-information", JSON.stringify(gameObj));
     alert("The current game is saved!");
@@ -635,6 +651,8 @@ function loadGame() {
     currentRound = gameObj.round;
     totalMoney = gameObj.money;
     score = gameObj.score;
+    questions = gameObj.questions;
+    questionIndex = gameObj.questionIndex;
     let bank = document.querySelector("#money");
     bank.innerHTML = `<h3> ${totalMoney} </h3>`;
     if (currentRound == 1) {
@@ -660,5 +678,3 @@ function playGame() {
     renderQuestion();
   }
 }
-
-playGame();
