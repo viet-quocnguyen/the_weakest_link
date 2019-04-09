@@ -311,7 +311,7 @@ let currentRound = 1;
 let score = 0;
 let totalMoney = 0;
 let time;
-// const timer = setTimeout(countDown, 1000);
+const timer = setTimeout(countDown, 1000);
 const timeRoundOne = 5;
 const timeRoundTwo = 10;
 const timeRoundThree = 20;
@@ -578,7 +578,7 @@ function displayResult() {
   playAgainButton.addEventListener("click", restartGame);
   saveButton.addEventListener("click", saveResult);
   if (isWin) {
-    resultInfomation.innerHTML = `Congratulation! You win the game and go home with \$${totalMoney}`;
+    resultInfomation.innerHTML = `Congratulations! You win the game and go home with \$${totalMoney}`;
   } else {
     resultInfomation.innerHTML =
       "You lose the game :( <br> Better luck next time!";
@@ -613,16 +613,19 @@ function displayRanking() {
   document.querySelector("#save-result-button").style.display = "none";
   document.querySelector("#player-name").style.display = "none";
   let rankingList = document.querySelector("#result-ranking");
+  let listRanking = document.querySelector("#rank-list");
+  let rankItem = document.createElement("li");
   let players = JSON.parse(localStorage.getItem("players"));
   if (players) {
     rankingList.innerHTML = "";
     players.sort((playerA, playerB) => playerB.money - playerA.money);
     for (let i = 0; i < players.length; i++) {
-      rankingList.innerHTML +=
-        "<br>" + players[i].name + " won " + players[i].money;
+      rankingList.innerHTML += 
+      "<br>" + players[i].name + " won " + players[i].money;
     }
   }
 }
+
 function backMenu() {
   document.location.href = "/index.html";
 }
