@@ -18,6 +18,8 @@ html{
     margin-top: 30vh;
     text-align: center;
     font-size: 1.7em;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 #display{
