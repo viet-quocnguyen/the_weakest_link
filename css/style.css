@@ -73,7 +73,6 @@ html{
 #rules{
     color: yellow;
     border-radius: 25px;
-    /*background: rgba(0,0,255,0.3);*/
     background: rgba(0,0,0, 0.7);
     text-align: justify;
     font-size: 0.85em;
@@ -97,7 +96,6 @@ html{
     #rules{
         color: yellow;
         border-radius: 25px;
-        /*background: rgba(0,0,255,0.3);*/
         background: rgba(0,0,0, 0.7);
         text-align: left;
         font-size: 0.8em;
@@ -116,7 +114,6 @@ html{
     #rules{
         color: yellow;
         border-radius: 25px;
-        /*background: rgba(0,0,255,0.3);*/
         background: rgba(0,0,0, 0.7);
         text-align: left;
         font-size: 0.8em;

@@ -277,7 +277,7 @@ let questions = [
     answer: "B"
   },
   {
-    title: "What sound does a cow make",
+    title: "What sound does a cow make?",
     A: "Neigh",
     B: "Moo",
     C: "Quack",
@@ -285,7 +285,7 @@ let questions = [
     answer: "B"
   },
   {
-    title: "Which of these is a fruit",
+    title: "Which of these is a fruit?",
     A: "Apple",
     B: "Carrot",
     C: "Lettuce",
@@ -293,7 +293,7 @@ let questions = [
     answer: "A"
   },
   {
-    title: "Which of these places is not in Canada",
+    title: "Which of these places is not in Canada?",
     A: "Ontario",
     B: "Quebec",
     C: "British Columbia",
@@ -301,7 +301,7 @@ let questions = [
     answer: "D"
   },
   {
-    title: "What is the capital city of Ontario",
+    title: "What is the capital city of Ontario?",
     A: "Toronto",
     B: "Montreal",
     C: "Vancouver",
@@ -309,7 +309,7 @@ let questions = [
     answer: "A"
   },
   {
-    title: "What is 3 times 4",
+    title: "What is 3 times 4?",
     A: "1",
     B: "12",
     C: "43",
@@ -317,7 +317,7 @@ let questions = [
     answer: "B"
   },
   {
-    title: "What sport has a SuperBowl",
+    title: "What sport has a SuperBowl?",
     A: "Cricket",
     B: "Field Hockey",
     C: "Football",
@@ -325,7 +325,7 @@ let questions = [
     answer: "C"
   },
   {
-    title: "Which country is located in South America",
+    title: "Which country is located in South America?",
     A: "St. Lucia",
     B: "Barbados",
     C: "Bahamas",
@@ -333,7 +333,7 @@ let questions = [
     answer: "D"
   },
   {
-    title: "England's Premier football league is what",
+    title: "England's Premier football league is what?",
     A: "English Premier League",
     B: "The really good league",
     C: "An exceptionally good league",
@@ -341,7 +341,7 @@ let questions = [
     answer: "A"
   },
   {
-    title: "An ocean is",
+    title: "An ocean is ... ",
     A: "Fresh water",
     B: "Sand",
     C: "large salt water body",
@@ -349,7 +349,7 @@ let questions = [
     answer: "C"
   },
   {
-    title: "A p tag in HTML is",
+    title: "A p tag in HTML is ... ",
     A: "an inline level element",
     B: "a block element",
     C: "a price tag",
@@ -357,7 +357,7 @@ let questions = [
     answer: "B"
   },
   {
-    title: "Game of thrones is based on novel series written by",
+    title: "Game of thrones is based on novel series written by ...",
     A: "Kadeem Best",
     B: "Dr Seuss",
     C: "Stephen King",
@@ -613,7 +613,7 @@ function setBank() {
   }
   totalMoney += money;
   let bank = document.querySelector("#money");
-  bank.innerHTML = `<h3> ${totalMoney} </h3>`;
+  bank.innerHTML = `<h3> $${totalMoney} </h3>`;
 }
 
 function countDown() {
