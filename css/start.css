@@ -111,6 +111,7 @@ html {
 .button:hover {
   background-color: blue;
   color: white;
+  cursor: pointer;
 }
 #title {
   width: 100%;
@@ -213,7 +214,6 @@ html {
   color: yellow;
   font-size: 1.0em;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
 }
 #result-ranking:hover{
   background-color: black;

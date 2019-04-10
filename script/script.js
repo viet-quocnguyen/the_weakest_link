@@ -349,7 +349,7 @@ let questions = [
     answer: "C"
   },
   {
-    title: "A <p> tag in HTML is",
+    title: "A p tag in HTML is",
     A: "an inline level element",
     B: "a block element",
     C: "a price tag",
@@ -403,6 +403,8 @@ const timer = setTimeout(countDown, 1000);
 const timeRoundOne = 120;
 const timeRoundTwo = 90;
 const timeRoundThree = 60;
+let maxMoney = 500000;
+const maxMoneyTwo = 1000000;
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i >= 0; i--) {
@@ -607,6 +609,7 @@ function setBank() {
 
   if((totalMoney + money) > 1000000 && currentRound == 2){
     money = 0;
+    alert(`You have the maximum amount of money for this round!`);
   }
   totalMoney += money;
   let bank = document.querySelector("#money");
@@ -618,8 +621,9 @@ function countDown() {
   counter.innerHTML = `<h3>${time}</h3>`;
   round.innerHTML = `<h3>${currentRound}</h3>`;
 
-  if(totalMoney == 500000 && currentRound == 1){
+  if(totalMoney == maxMoney){
     time = 0;
+    maxMoney = maxMoneyTwo;
   }
 
 
@@ -643,6 +647,7 @@ function countDown() {
         displayResult();
       } else {
         time = timeRoundThree;
+        maxMoney = 0;
         setTimeout(countDown, 1000);
 
         moneyTreeOne.style.display = "none";
@@ -710,8 +715,6 @@ function displayRanking() {
   document.querySelector("#save-result-button").style.display = "none";
   document.querySelector("#player-name").style.display = "none";
   let rankingList = document.querySelector("#result-ranking");
-  let listRanking = document.querySelector("#rank-list");
-  let rankItem = document.createElement("li");
   let players = JSON.parse(localStorage.getItem("players"));
   if (players) {
     rankingList.innerHTML = "";
