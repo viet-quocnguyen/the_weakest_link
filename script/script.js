@@ -275,6 +275,94 @@ let questions = [
     C: "five",
     D: "ten",
     answer: "B"
+  },
+  {
+    title: "What sound does a cow make",
+    A: "Neigh",
+    B: "Moo",
+    C: "Quack",
+    D: "Meow",
+    answer: "B"
+  },
+  {
+    title: "Which of these is a fruit",
+    A: "Apple",
+    B: "Carrot",
+    C: "Lettuce",
+    D: "Celery",
+    answer: "A"
+  },
+  {
+    title: "Which of these places is not in Canada",
+    A: "Ontario",
+    B: "Quebec",
+    C: "British Columbia",
+    D: "Florida",
+    answer: "D"
+  },
+  {
+    title: "What is the capital city of Ontario",
+    A: "Toronto",
+    B: "Montreal",
+    C: "Vancouver",
+    D: "Manhatten",
+    answer: "A"
+  },
+  {
+    title: "What is 3 times 4",
+    A: "1",
+    B: "12",
+    C: "43",
+    D: "34",
+    answer: "B"
+  },
+  {
+    title: "What sport has a SuperBowl",
+    A: "Cricket",
+    B: "Field Hockey",
+    C: "Football",
+    D: "HotDog Eating Contest",
+    answer: "C"
+  },
+  {
+    title: "Which country is located in South America",
+    A: "St. Lucia",
+    B: "Barbados",
+    C: "Bahamas",
+    D: "Guyana",
+    answer: "D"
+  },
+  {
+    title: "England's Premier football league is what",
+    A: "English Premier League",
+    B: "The really good league",
+    C: "An exceptionally good league",
+    D: "A somewhat ok league",
+    answer: "A"
+  },
+  {
+    title: "An ocean is",
+    A: "Fresh water",
+    B: "Sand",
+    C: "large salt water body",
+    D: "small",
+    answer: "C"
+  },
+  {
+    title: "A <p> tag in HTML is",
+    A: "an inline level element",
+    B: "a block element",
+    C: "a price tag",
+    D: "an exclusive tag",
+    answer: "B"
+  },
+  {
+    title: "Game of thrones is based on novel series written by",
+    A: "Kadeem Best",
+    B: "Dr Seuss",
+    C: "Stephen King",
+    D: "George RR Martin",
+    answer: "D"
   }
 ];
 
@@ -312,9 +400,9 @@ let score = 0;
 let totalMoney = 0;
 let time;
 const timer = setTimeout(countDown, 1000);
-const timeRoundOne = 5;
-const timeRoundTwo = 10;
-const timeRoundThree = 20;
+const timeRoundOne = 120;
+const timeRoundTwo = 90;
+const timeRoundThree = 60;
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i >= 0; i--) {
@@ -517,6 +605,9 @@ function setBank() {
     }
   }
 
+  if((totalMoney + money) > 1000000 && currentRound == 2){
+    money = 0;
+  }
   totalMoney += money;
   let bank = document.querySelector("#money");
   bank.innerHTML = `<h3> ${totalMoney} </h3>`;
@@ -526,6 +617,12 @@ function countDown() {
   time--;
   counter.innerHTML = `<h3>${time}</h3>`;
   round.innerHTML = `<h3>${currentRound}</h3>`;
+
+  if(totalMoney == 500000 && currentRound == 1){
+    time = 0;
+  }
+
+
 
   if (time == 0) {
     clearTimeout(timer);
@@ -621,7 +718,7 @@ function displayRanking() {
     players.sort((playerA, playerB) => playerB.money - playerA.money);
     for (let i = 0; i < players.length; i++) {
       rankingList.innerHTML += 
-      "<br>" + players[i].name + " won " + players[i].money;
+      "<br>" + players[i].name + " won " + "$" + players[i].money;
     }
   }
 }
